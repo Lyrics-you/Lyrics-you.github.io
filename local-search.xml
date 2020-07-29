@@ -4,13 +4,25 @@
   
   
   <entry>
-    <title>post title</title>
+    <title>爱你就像爱生命</title>
     <link href="/2020/07/28/post-title/"/>
     <url>/2020/07/28/post-title/</url>
     
-    <content type="html"><![CDATA[<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><h3 id="标题三"><a href="#标题三" class="headerlink" title="标题三"></a>标题三</h3><h4 id="标题四"><a href="#标题四" class="headerlink" title="标题四"></a>标题四</h4><h6 id="标题五"><a href="#标题五" class="headerlink" title="标题五"></a>标题五</h6><p>** 这是加粗 **</p><ul><li>这是斜体 *</li></ul><p><del>~ 这是横线 ~</del></p><ol><li>有序列表</li><li>有序列表</li></ol><p><code>内嵌代码</code></p><hr><p>代码块</p><hr><blockquote><p>引号</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<!-- ![](/img/example.jpg)本地图片 --><h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><h3 id="标题三"><a href="#标题三" class="headerlink" title="标题三"></a>标题三</h3><h4 id="标题四"><a href="#标题四" class="headerlink" title="标题四"></a>标题四</h4><h6 id="标题五"><a href="#标题五" class="headerlink" title="标题五"></a>标题五</h6><p>** 这是加粗 **</p><ul><li>这是斜体 *</li></ul><p><del>~ 这是横线 ~</del></p><ol><li>有序列表</li><li>有序列表</li></ol><p><code>内嵌代码</code></p><hr><p>代码块</p><hr><blockquote><p>引号</p></blockquote><p class="note note-primary">标签</p><span class="label label-primary">Label</span>            <input type="checkbox" disabled checked="checked">text          <p>这是一句话<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="这是对应的脚注">[1]</span></a></sup></p><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>这是对应的脚注<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
     
     
+    <categories>
+      
+      <category>随笔</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>情书</tag>
+      
+    </tags>
     
   </entry>
   
