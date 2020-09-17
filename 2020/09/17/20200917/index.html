@@ -1,0 +1,744 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/love-message.png">
+  <link rel="icon" type="image/png" href="/img/love-message.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="LoveYouTrueHappy">
+  <meta name="keywords" content="">
+  <title>C++空类与6个成员函数 - 落鸢清欢</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>落鸢清欢</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                清欢
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/essay-letter/">
+                    
+                    情书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/essay-story/">
+                    
+                    故事
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/LetHeartFollow.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-17 21:02" pubdate>
+      2020年9月17日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">C++空类与6个成员函数</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <div class="markdown-body">
+<p class="note note-primary">C++空类与6个成员函数</p>
+
+
+<h1 id="C-空类与6个成员函数"><a href="#C-空类与6个成员函数" class="headerlink" title="C++空类与6个成员函数"></a>C++空类与6个成员函数</h1><p><img src="https://i.loli.net/2020/09/17/pcfsa6kERVWPxwq.png" srcset="/img/loading.gif" alt="shadow"></p>
+<h2 id="空类，声明时编译器不会生成任何成员函数"><a href="#空类，声明时编译器不会生成任何成员函数" class="headerlink" title="空类，声明时编译器不会生成任何成员函数"></a>空类，声明时编译器不会生成任何成员函数</h2><p>对于空类，编译器不会生成任何成员函数，只会生成1个字节的占位符。（C++不允许一个类的大小为0）</p>
+<p>有时可能会以为编译器会为空类生成默认构造函数等，事实上是不会的，编译器只会在需要的时候生成6个成员函数：一个缺省的构造函数、一个拷贝构造函数、一个析构函数、一个赋值运算符、一对取址运算符和一个this指针。</p>
+<p>代码：</p>
+<pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty_one</span></span>
+<span class="hljs-class">&#123;</span>
+&#125;;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty_two</span></span>
+<span class="hljs-class">&#123;</span>
+&#125;;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty_three</span></span>
+<span class="hljs-class">&#123;</span>
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+&#125;;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty_four</span> :</span> <span class="hljs-keyword">public</span> Empty_two, <span class="hljs-keyword">public</span> Empty_three
+&#123;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"sizeof(Empty_one):"</span> &lt;&lt; <span class="hljs-keyword">sizeof</span>(Empty_one) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"sizeof(Empty_two):"</span> &lt;&lt; <span class="hljs-keyword">sizeof</span>(Empty_two) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"sizeof(Empty_three):"</span> &lt;&lt; <span class="hljs-keyword">sizeof</span>(Empty_three) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"sizeof(Empty_four):"</span> &lt;&lt; <span class="hljs-keyword">sizeof</span>(Empty_four) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<p>运行结果：</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(Empty_one)</span></span>:<span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(Empty_two)</span></span>:<span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(Empty_three)</span></span>:<span class="hljs-number">8</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(Empty_four)</span></span>:<span class="hljs-number">8</span></code></pre>
+
+<p>分析：</p>
+<p>类Empty_one、Empty_two是空类，但空类同样可以被实例化，而每个实例在内存中都有一个独一无二的地址，为了达到这个目的，编译器往往会给一个空类隐含的加一个字节，这样空类在实例化后在内存得到了独一无二的地址，所以sizeof(Empty_one)和sizeof(Empty_two)的大小为1。</p>
+<p>类Empty_three里面因有一个纯虚函数，故有一个指向虚函数的指针（vptr），64位系统分配给指针的大小为8个字节，所以sizeof(Empty_three)的大小为8。</p>
+<p>类Empty_four继承于Empty_two和Empty_three，编译器取消Empty_two的占位符，保留一个虚函数表，故大小为8。</p>
+<h2 id="空类，定义时会生成6个成员函数"><a href="#空类，定义时会生成6个成员函数" class="headerlink" title="空类，定义时会生成6个成员函数"></a>空类，定义时会生成6个成员函数</h2><p> 当空类Empty_one定义一个对象时Empty_one pt;sizeof(pt)仍是为1，但编译器会生成6个成员函数：一个缺省的构造函数、一个拷贝构造函数、一个析构函数、一个赋值运算符、两个取址运算符。</p>
+<pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty</span></span>
+<span class="hljs-class">&#123;</span>&#125;;</code></pre>
+
+<p>等价于：</p>
+<pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Empty</span></span>
+<span class="hljs-class">&#123;</span>
+  <span class="hljs-keyword">public</span>:
+    Empty();                            <span class="hljs-comment">//缺省构造函数</span>
+    Empty(<span class="hljs-keyword">const</span> Empty &amp;rhs);            <span class="hljs-comment">//拷贝构造函数</span>
+    ~Empty();                           <span class="hljs-comment">//析构函数 </span>
+    Empty&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Empty &amp;rhs); <span class="hljs-comment">//赋值运算符</span>
+    Empty* <span class="hljs-keyword">operator</span>&amp;();                 <span class="hljs-comment">//取址运算符</span>
+    <span class="hljs-keyword">const</span> Empty* <span class="hljs-keyword">operator</span>&amp;() <span class="hljs-keyword">const</span>;     <span class="hljs-comment">//取址运算符(const版本)</span>
+&#125;;</code></pre>
+
+<p>使用时的调用情况：</p>
+<pre><code class="hljs C++">Empty *e = <span class="hljs-keyword">new</span> Empty();    <span class="hljs-comment">//缺省构造函数</span>
+<span class="hljs-keyword">delete</span> e;                  <span class="hljs-comment">//析构函数</span>
+Empty e1;                  <span class="hljs-comment">//缺省构造函数                               </span>
+<span class="hljs-function">Empty <span class="hljs-title">e2</span><span class="hljs-params">(e1)</span></span>;              <span class="hljs-comment">//拷贝构造函数</span>
+e2 = e1;                   <span class="hljs-comment">//赋值运算符</span>
+Empty *pe1 = &amp;e1;          <span class="hljs-comment">//取址运算符(非const)</span>
+<span class="hljs-keyword">const</span> Empty *pe2 = &amp;e2;    <span class="hljs-comment">//取址运算符(const)</span></code></pre>
+
+<p>C++编译器对这些函数的实现：</p>
+<pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-title">Empty::Empty</span><span class="hljs-params">()</span>                          <span class="hljs-comment">//缺省构造函数</span></span>
+<span class="hljs-function"></span>&#123;
+&#125;
+<span class="hljs-keyword">inline</span> Empty::~Empty()                         <span class="hljs-comment">//析构函数</span>
+&#123;
+&#125;
+<span class="hljs-keyword">inline</span> Empty *Empty::<span class="hljs-keyword">operator</span>&amp;()               <span class="hljs-comment">//取址运算符(非const)</span>
+&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; 
+&#125;           
+<span class="hljs-keyword">inline</span> <span class="hljs-keyword">const</span> Empty *Empty::<span class="hljs-keyword">operator</span>&amp;() <span class="hljs-keyword">const</span>    <span class="hljs-comment">//取址运算符(const)</span>
+&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-title">Empty::Empty</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Empty &amp;rhs)</span>           <span class="hljs-comment">//拷贝构造函数</span></span>
+<span class="hljs-function"></span>&#123;
+  <span class="hljs-comment">//对类的非静态数据成员进行以"成员为单位"逐一拷贝构造</span>
+  <span class="hljs-comment">//固定类型的对象拷贝构造是从源对象到目标对象的"逐位"拷贝</span>
+&#125;
+ 
+<span class="hljs-keyword">inline</span> Empty&amp; Empty::<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Empty &amp;rhs) <span class="hljs-comment">//赋值运算符</span>
+&#123;
+  <span class="hljs-comment">//对类的非静态数据成员进行以"成员为单位"逐一赋值</span>
+  <span class="hljs-comment">//固定类型的对象赋值是从源对象到目标对象的"逐位"赋值。</span>
+&#125;</code></pre>
+
+<p> 例如：m是类C中的一个类型为T的非静态成员变量，若C没有声明拷贝构造函数（赋值运算符），m将会通过T的拷贝构造函数（赋值运算符）被拷贝构造(赋值)；该规则递归应用到m的数据成员，直到找到一个拷贝构造函数（赋值运算符）或固定类型（例如：int、double、指针等)为止。</p>
+<p><a href="https://blog.csdn.net/taiyang1987912/article/details/43485569" target="_blank" rel="noopener">https://blog.csdn.net/taiyang1987912/article/details/43485569</a></p>
+<h2 id="关于默认构造函数的扩充"><a href="#关于默认构造函数的扩充" class="headerlink" title="关于默认构造函数的扩充"></a>关于默认构造函数的扩充</h2><p>默认拷贝构造函数（Default Copy Constructor）、默认赋值运算符（operator =）和默认析构函数，是C++类中的六大特殊成员函数中的三个。三者同时遵循一个原则：“一荣俱荣、一损俱损”。如果三者其中的任意一个被显示定义了（defined）那么三者必须都被显式定义。当果三者之一被程序员调用但未没有被显式声明时，编译器会隐含的实现这三个特殊成员函数。当用一个类对象去初始化另一个类对象时，需要用到拷贝构造函数；当用一个类对象去设定另一个类对象时，需要用到赋值运算符。</p>
+<p>什么情况下需要实现默认的构造函数呢？</p>
+<p>1) 类中含有成员类对象，并且此类对象含有默认构造函数；</p>
+<p>这种情况下，如果没有显示的定义构造函数，那么需要一次构造类中定义的所有成员，当构造成员类对象（member class object）的时候，需要调用此成员类的默认构造函数，所以这时候需要编译器构造出默认的构造函数，来调用成员类的默认构造函数。</p>
+<p>2) 类的基类中至少有一个含有默认的构造函数；</p>
+<p>如果没有显式的定义构造函数，同样编译器构造派生类的时候，必然需要调用基类的构造函数，所以需要编译器在派生类中构造出默认的构造函数。</p>
+<p>3) 类中含有虚函数（virtual function）；</p>
+<p>4) 类中含有虚基类（virtual base class）；</p>
+<p>由于虚拟机制的原因，这两种情况下，需要编译器来完成虚函数表（vbtl）的初始化和虚表指针（vptr）的初始化，所以如果没有显式的定义构造函数，需要编译器构造默认的构造函数。（本身虚拟机制就是从编译器角度来实现的）。其他比较简单的情况（类的成员数据都是POD=Plain Old Data），在MSVC中经过O2选项优化编译后，简单的类直接被转换为几个连续定义的变量，自然就不需要默认的构造函数了。</p>
+<p>从编译器编译连接角度，以上四种情况下如果未定义拷贝构造函数，编译器为了编译工作的顺利进行，会自定义拷贝构造函数；（但是：此时的默认拷贝构造函数依然只能完成对象的栈对象的创建和拷贝，无法完成堆上动态内存的拷贝构造，故此时依然属于浅拷贝！编译器为了防止含成员类的类或派生类混乱而使用扩张法调用了经过扩张的默认构造函数，主要完成了类结构意义上的创建和初始化，但不改变其依然对动态内存缺失拷贝手段的浅拷贝本质。）所以此时往往需要程序员显式定义出自己的拷贝构造函数（只有这个时候才是深拷贝）。</p>
+<p><a href="https://blog.csdn.net/KingCat666/article/details/45042359" target="_blank" rel="noopener">https://blog.csdn.net/KingCat666/article/details/45042359</a></p>
+<h2 id="Default-Construtor-的建构操作"><a href="#Default-Construtor-的建构操作" class="headerlink" title="Default Construtor 的建构操作"></a>Default Construtor 的建构操作</h2><p>default constructors 在需要的时候会被编译器产生出来，被谁需要？有如下程序：</p>
+<pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> &#123;</span>
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">int</span>  val;
+  Foo *pnext;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo_bar</span><span class="hljs-params">()</span> </span>&#123;
+  <span class="hljs-comment">// Oops: program needs bar's members zeroed out</span>
+  Foo bar;
+  <span class="hljs-keyword">if</span> (bar.val || bar.pnext)
+  <span class="hljs-comment">// ... do something</span>
+  <span class="hljs-comment">// ...</span>
+&#125;</code></pre>
+
+<p>正确的程序语意是要求 default constructor，可以将两个 members 初始化为 0，但编译器并不会为之合成出一个 default constructor，因为上述所说的需要，是指编译器需要的时候，而不是程序员需要的时候，这里编译器并不需要这个 default constructor。所以正确的表述应该是：如果没有任何 user-declared constructor，那么就会有一个 default constructor 被声明，但其是一个 trivial constructor（没啥用的 constructor）。那么，编译器什么时候会生成一个 nontrivial default constructor 呢？</p>
+<h3 id="“带有-Default-Constructor”的-Member-Class-Object"><a href="#“带有-Default-Constructor”的-Member-Class-Object" class="headerlink" title="“带有 Default Constructor”的 Member Class Object"></a>“带有 Default Constructor”的 Member Class Object</h3><p>简单来说：如果一个 class 没有任何 constructor，但其内含一个 member object，而这个 member object 有 default constructor，那么编译器就会合成出一个“nontrivial default constructor”。举个例子：</p>
+<pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> &#123;</span>
+ <span class="hljs-keyword">public</span>:
+  Foo(), Foo(<span class="hljs-keyword">int</span>)...
+&#125;;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> &#123;</span>
+ <span class="hljs-keyword">public</span>:
+  Foo   foo;
+  <span class="hljs-keyword">char</span> *str;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo_bar</span><span class="hljs-params">()</span> </span>&#123;
+  Bar bar;  <span class="hljs-comment">// Bar::foo must be initialized here</span>
+
+  <span class="hljs-keyword">if</span> (str) &#123;
+  &#125;
+  ...
+&#125;</code></pre>
+
+<p>这个程序当中，编译器会为 class Bar 合成一个 default constructor，因为在 foo_bar 中，声明了一个 Bar 对象，这时候就需要初始化其中的 member，其中 <code>Bar::foo</code> 就需要调用 Foo 的 default constructor 才能初始化，这里初始化 foo 就是编译器的责任，但是 <code>Bar::str</code> 的初始化，则还是程序员的责任。合成出的 default constructor 可能如下：</p>
+<pre><code class="hljs C++"><span class="hljs-comment">// possible synthesis of Bar default constructor</span>
+<span class="hljs-comment">// invoke Foo default constructor for member foo</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-title">Bar::Bar</span><span class="hljs-params">()</span> </span>&#123;
+  <span class="hljs-comment">// Pseudo C++ Code</span>
+  foo.Foo::Foo();
+&#125;</code></pre>
+
+<p>假如程序员定义了一个 default constructor，提供了 str 的初始化操作，但没有提供 foo 的初始化操作：</p>
+<pre><code class="hljs C++">Bar::Bar() &#123;
+	str = <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<p>现在程序的需求满足，但编译器的需求没有满足，还需要初始化 foo，但 default constructor 已经被程序员定义了，没法再合成一个了，那么编译器会按如下准则行动：“如果 class A 内含一个或一个以上的 member class objects，那么，class A 的每个 constructor 必须调用每一个 member class 的default constructor”。所以，编译器可能会将代码扩展成：</p>
+<pre><code class="hljs C++"><span class="hljs-comment">// Augmented default constructor</span>
+<span class="hljs-comment">// Pseudo C++ Code</span>
+Bar::Bar() &#123;
+  foo.Foo::Foo();  <span class="hljs-comment">// augmented compiler code</span>
+  str = <span class="hljs-number">0</span>;         <span class="hljs-comment">// explicit user code</span>
+&#125;</code></pre>
+
+<p>如果有多个 class member object 都需要进行初始化操作，那么编译器会按 member object 再 class 中的声明次序，一个个调用其 default constructors。这些代码都将被安插在 explicit user code（生成的代码是 implicit 的）之前。</p>
+<h3 id="“带有-Default-Constructor”的-Base-Class"><a href="#“带有-Default-Constructor”的-Base-Class" class="headerlink" title="“带有 Default Constructor”的 Base Class"></a>“带有 Default Constructor”的 Base Class</h3><p>如果一个没有任何 constructor 的 class 派生自一个“带有 default constructor”（包括自动生成的）的 base class，那么编译器就会为其生成一个 nontrivial default constructor，在其中调用 base class 的 default constructor。</p>
+<p>如果程序员写了好几个 constructor，但就是没写 default constructor 呢？那么编译器就会扩张现有的每一个 constructor，将所需要调用的 base calss 的 default constructor 一个个加上去，但并不会为其合成新的 default constructor（因为程序员已经提供了 constructor，所以不会再合成了）。注意，如果还有上一小节说的 member class object，那么这些 object 的 default constructor 也会被安插进去，位置在 base class constructor 之后。</p>
+<h3 id="“带有一个-Virtual-Function”的-Class"><a href="#“带有一个-Virtual-Function”的-Class" class="headerlink" title="“带有一个 Virtual Function”的 Class"></a>“带有一个 Virtual Function”的 Class</h3><p>在下面两种情况下，也需合成 default constructor：</p>
+<ol>
+<li>class 声明（或继承）一个 virtual function。</li>
+<li>class 派生自一个继承串链，其中有一个或多个 virtual base class。</li>
+</ol>
+<p>有如下程序：</p>
+<pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Widget</span> &#123;</span>
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">flip</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+  <span class="hljs-comment">// ...</span>
+&#125;;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">flip</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Widget&amp; widget)</span> </span>&#123;
+  widget.flip();
+&#125;
+<span class="hljs-comment">// presuming Bell and Whistle are derived from Widget</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123;
+  Bell    b;
+  Whistle w;
+  flip(b);
+  flip(w);
+&#125;</code></pre>
+
+<p>其中，Bell 和 Wistle 都继承自 Widget。那么下面两个扩张操作会在编译期间发生：</p>
+<ol>
+<li>编译器会产生一个 virtual function table（vtbl），其中存放 class 的 virtual function 的地址。</li>
+<li>在每个 class object 中，会合成一个额外的 pointer member（vptr），存放 vtbl 的地址。</li>
+</ol>
+<p>并且，widget.flip() 的调用会被重新改写：</p>
+<pre><code class="hljs C++"><span class="hljs-comment">// simplified transformation of virtual invocation: widget.flip()</span>
+(*widget.vptr[<span class="hljs-number">1</span>])(&amp;widget)</code></pre>
+
+<p>其中：</p>
+<ul>
+<li>1 表示 flip() 在 virtual table 中的索引；</li>
+<li>&amp;widget 是 this 指针（每个成员函数都有一个隐含的 this 指针哦）。</li>
+</ul>
+<p>编译器会为每个 Widget object 的 vptr 设定初值，所以对于 class 所定义的每个 constructor，编译器都会安插一些代码来做这样的事。对于没有任何 constructor 的 class，编译器则合成一个 default constructor 来做此事。</p>
+<h3 id="“带有一个-Virtual-Base-Class”的-Class"><a href="#“带有一个-Virtual-Base-Class”的-Class" class="headerlink" title="“带有一个 Virtual Base Class”的 Class"></a>“带有一个 Virtual Base Class”的 Class</h3><p>因为 virtual base class 在内存中的位置也是由一个指针指示出的，所以编译器也会对每个 constructor 安插一些代码，用来支持 virtual base class，如果没有声明任何 constructor，那么编译器就会合成一个 default constructor。</p>
+<p><a href="https://guodong.plus/2020/0317-224323/" target="_blank" rel="noopener">https://guodong.plus/2020/0317-224323/</a></p>
+</div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/29/AsMyLife/">
+                        <span class="hidden-mobile">爱你就像爱生命</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+  <p id="hitokoto">:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+  </script>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "C++空类与6个成员函数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
