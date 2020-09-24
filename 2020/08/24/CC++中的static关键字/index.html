@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/love-message.png">
+  <link rel="icon" type="image/png" href="/img/love-message.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="LoveYouTrueHappy">
+  <meta name="keywords" content="">
+  <title>C/C++中的static关键字 - 落鸢清欢</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>落鸢清欢</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                清欢
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/essay-letter/">
+                    
+                    情书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/essay-story/">
+                    
+                    故事
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/LetHeartFollow.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-24 17:02" pubdate>
+      2020年8月24日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">C/C++中的static关键字</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <div class="markdown-body">
+<p class="note note-primary">C++空类与6个成员函数</p>
+# C/C++中的static关键字
+
+<p><img src="https://i.loli.net/2020/09/17/pcfsa6kERVWPxwq.png" srcset="/img/loading.gif" alt="shadow"></p>
+<p>C++中static关键字的作用有哪些？</p>
+<ol>
+<li>隐藏作用域：当一个工程有多个文件的时候，用static修饰的函数或变量只能够在本文件中可见，文件外不可见。</li>
+<li>全局生命周期：用static修饰的变量或函数生命周期是到程序结束时被释放的。被static修饰的变量存储在静态数据区。</li>
+<li>static修饰的变量默认初始化为0.</li>
+<li>static修饰的变量或函数是属于类的，所有对象只有一份拷贝。因此，不能够将静态函数设置为虚函数。</li>
+<li>在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量。</li>
+</ol>
+<p><strong>小目录：</strong></p>
+<ul>
+<li>静态成员变量（面向对象）</li>
+<li>静态成员函数（面向对象）</li>
+<li>静态全局变量（面向过程）</li>
+<li>静态局部变量（面向过程）</li>
+<li>静态函数（面向过程）</li>
+</ul>
+<h2 id="1-（面向对象的）静态成员变量"><a href="#1-（面向对象的）静态成员变量" class="headerlink" title="1.（面向对象的）静态成员变量"></a><strong>1.（面向对象的）静态成员变量</strong></h2><p>在类内成员变量的声明前加上关键字static，该数据成员就是类内的静态数据成员。</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">//Example 5</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt;</span></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myclass</span></span>
+<span class="hljs-class">&#123;</span>
+<span class="hljs-keyword">public</span>:
+	Myclass(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b,<span class="hljs-keyword">int</span> c);
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetSum</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">private</span>:
+	<span class="hljs-keyword">int</span> a,b,c;
+	<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> Sum;<span class="hljs-comment">//声明静态数据成员</span>
+&#125;;
+
+<span class="hljs-keyword">int</span> Myclass::Sum=<span class="hljs-number">0</span>;    <span class="hljs-comment">//定义并初始化静态数据成员</span>
+
+Myclass::Myclass(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b,<span class="hljs-keyword">int</span> c)
+&#123;
+	<span class="hljs-keyword">this</span>-&gt;a=a;
+	<span class="hljs-keyword">this</span>-&gt;b=b;
+	<span class="hljs-keyword">this</span>-&gt;c=c;
+	Sum+=a+b+c;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Myclass::GetSum</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Sum="</span>&lt;&lt;Sum&lt;&lt;<span class="hljs-built_in">endl</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-function">Myclass <span class="hljs-title">M</span><span class="hljs-params">(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)</span></span>;
+	M.GetSum();
+	<span class="hljs-function">Myclass <span class="hljs-title">N</span><span class="hljs-params">(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>)</span></span>;
+	N.GetSum();
+	M.GetSum();
+&#125;</code></pre>
+
+
+
+<p><strong>静态成员变量有以下特点：</strong></p>
+<ol>
+<li><strong>静态成员变量是该类的所有对象所共有的。</strong>对于普通成员变量，每个类对象都有自己的一份拷贝。而静态成员变量一共就一份，无论这个类的对象被定义了多少个，<strong>静态成员变量只分配一次内存，由该类的所有对象共享访问。</strong>所以，静态数据成员的值对每个对象都是一样的，它的值可以更新；</li>
+<li>因为<strong>静态数据成员在全局数据区分配内存</strong>，由本类的所有对象共享，所以，它不属于特定的类对象，不占用对象的内存，而是在<strong>所有对象之外开辟内存</strong>，在没有产生类对象时其作用域就可见。因此，<strong>在没有类的实例存在时，静态成员变量就已经存在，我们就可以操作它；</strong></li>
+<li>静态成员变量存储在全局数据区。static 成员变量的内存空间既不是在声明类时分配，也不是在创建对象时分配，<strong>而是在初始化时分配</strong>。<strong>静态成员变量必须初始化，而且只能在类体外进行。否则，编译能通过，链接不能通过。</strong>在Example 5中，语句int Myclass::Sum=0;是定义并初始化静态成员变量。初始化时可以赋初值，也可以不赋值。如果不赋值，那么会被默认初始化，一般是 0。<strong>静态数据区的变量都有默认的初始值，而动态数据区（堆区、栈区）的变量默认是垃圾值。</strong></li>
+<li>static 成员变量和普通 static 变量一样，<strong>编译时在静态数据区分配内存，到程序结束时才释放</strong>。这就意味着，static 成员变量不随对象的创建而分配内存，也不随对象的销毁而释放内存。而普通成员变量在对象创建时分配内存，在对象销毁时释放内存。</li>
+<li>静态数据成员初始化与一般数据成员初始化不同。<strong>初始化时可以不加 static，但必须要有数据类型。</strong>被 private、protected、public 修饰的 static 成员变量都可以用这种方式初始化。静态数据成员初始化的格式为：＜数据类型＞＜类名＞::＜静态数据成员名＞=＜值＞</li>
+<li>类的静态成员变量访问形式1：＜类对象名＞.＜静态数据成员名＞</li>
+<li>类的静态成员变量访问形式2：＜类类型名＞::＜静态数据成员名＞，<strong>也即，静态成员不需要通过对象就能访问</strong>。</li>
+<li>静态数据成员和普通数据成员一样遵从public,protected,private访问规则；</li>
+<li>如果静态数据成员的访问权限允许的话（即public的成员），可在程序中，按上述格式来引用静态数据成员 ；</li>
+<li>sizeof <strong>运算符不会计算 静态成员变量</strong>。</li>
+</ol>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CMyclass</span>&#123;</span>
+    <span class="hljs-keyword">int</span> n;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> s;
+&#125;;    <span class="hljs-comment">//则sizeof（CMyclass）等于4</span></code></pre>
+
+<p><strong>何时采用静态数据成员？</strong></p>
+<p>设置静态成员（变量和函数）这种机制的目的是将某些和类紧密相关的全局变量和函数写到类里面，看上去像一个整体，易于理解和维护。如果想在同类的多个对象之间实现数据共享，又不要用全局变量，那么就可以使用静态成员变量。也即，静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，每个实例的利息都是相同的。所以，应该把利息设为存款类的静态数据成员。这有两个好处：</p>
+<ol>
+<li>不管定义多少个存款类对象，利息数据成员都共享分配在全局数据区的内存，节省存储空间。</li>
+<li>一旦利息需要改变时，只要改变一次，则所有存款类对象的利息全改变过来了。</li>
+</ol>
+<p>你也许会问，用全局变量不是也可以达到这个效果吗？</p>
+<p>同全局变量相比，使用静态数据成员有两个优势：</p>
+<ol>
+<li><strong>静态成员变量没有进入程序的全局命名空间，因此不存在与程序中其它全局命名冲突的可能。</strong></li>
+<li><strong>可以实现信息隐藏。静态成员变量可以是private成员，而全局变量不能。</strong></li>
+</ol>
+<h2 id="2-（面向对象的）-静态成员函数"><a href="#2-（面向对象的）-静态成员函数" class="headerlink" title="2.（面向对象的） 静态成员函数"></a><strong>2.（面向对象的） 静态成员函数</strong></h2><p>与静态成员变量类似，我们也可以声明一个静态成员函数。</p>
+<p>静态成员函数为类服务而不是为某一个类的具体对象服务。静态成员函数与静态成员变量一样，都是类的内部实现，属于类定义的一部分。普通成员函数必须具体作用于某个对象，<strong>而静态成员函数并不具体作用于某个对象。</strong></p>
+<p>普通的成员函数一般都隐含了一个this指针，this指针指向类的对象本身，因为普通成员函数总是具体地属于类的某个具体对象的。<strong>当函数被调用时，系统会把当前对象的起始地址赋给 this 指针。通常情况下，this是缺省的。如函数fn()实际上是this-&gt;fn()。</strong></p>
+<p>与普通函数相比，<strong>静态成员函数属于类本身，而不作用于对象，因此它不具有this指针。</strong>正因为它没有指向某一个对象，<strong>所以它无法访问属于类对象的非静态成员变量和非静态成员函数，它只能调用其余的静态成员函数和静态成员变量。</strong>从另一个角度来看，由于静态成员函数和静态成员变量在类实例化之前就已经存在可以访问，而此时非静态成员还是不存在的，因此静态成员不能访问非静态成员。</p>
+<pre><code class="hljs C++"><span class="hljs-comment">//Example 6</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>&#123;</span>
+<span class="hljs-keyword">private</span>:
+   <span class="hljs-keyword">char</span> *name;
+   <span class="hljs-keyword">int</span> age;
+   <span class="hljs-keyword">float</span> score;
+   <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> num;  	<span class="hljs-comment">//学生人数</span>
+   <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> total;  <span class="hljs-comment">//总分</span>
+<span class="hljs-keyword">public</span>:
+   Student(<span class="hljs-keyword">char</span> *, <span class="hljs-keyword">int</span>, <span class="hljs-keyword">float</span>);
+   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>;
+   <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getAverage</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">//静态成员函数，用来获得平均成绩</span>
+&#125;;
+
+<span class="hljs-keyword">int</span> Student::num = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">float</span> Student::total = <span class="hljs-number">0</span>;
+
+Student::Student(<span class="hljs-keyword">char</span> *name, <span class="hljs-keyword">int</span> age, <span class="hljs-keyword">float</span> score)
+&#123;
+   <span class="hljs-keyword">this</span>-&gt;name = name;
+   <span class="hljs-keyword">this</span>-&gt;age = age;
+   <span class="hljs-keyword">this</span>-&gt;score = score;
+   num++;
+   total += score;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Student::say</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+   <span class="hljs-built_in">cout</span>&lt;&lt;name&lt;&lt;<span class="hljs-string">"的年龄是 "</span>&lt;&lt;age&lt;&lt;<span class="hljs-string">"，成绩是 "</span>&lt;&lt;score&lt;&lt;<span class="hljs-string">"（当前共"</span>&lt;&lt;num&lt;&lt;<span class="hljs-string">"名学生）"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">Student::getAverage</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+   <span class="hljs-keyword">return</span> total / num;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+   (<span class="hljs-keyword">new</span> Student(<span class="hljs-string">"小明"</span>, <span class="hljs-number">15</span>, <span class="hljs-number">90</span>))-&gt;say();
+   (<span class="hljs-keyword">new</span> Student(<span class="hljs-string">"李磊"</span>, <span class="hljs-number">16</span>, <span class="hljs-number">80</span>))-&gt;say();
+   (<span class="hljs-keyword">new</span> Student(<span class="hljs-string">"张华"</span>, <span class="hljs-number">16</span>, <span class="hljs-number">99</span>))-&gt;say();
+   (<span class="hljs-keyword">new</span> Student(<span class="hljs-string">"王康"</span>, <span class="hljs-number">14</span>, <span class="hljs-number">60</span>))-&gt;say();
+   <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"平均成绩为 "</span>&lt;&lt;Student::getAverage()&lt;&lt;<span class="hljs-built_in">endl</span>;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<p>运行结果：</p>
+<pre><code class="hljs text">小明的年龄是 15，成绩是 90（当前共1名学生）
+李磊的年龄是 16，成绩是 80（当前共2名学生）
+张华的年龄是 16，成绩是 99（当前共3名学生）
+王康的年龄是 14，成绩是 60（当前共4名学生）
+平均成绩为 82.25</code></pre>
+
+<p><strong>静态成员函数的特点：</strong></p>
+<ol>
+<li><strong>出现在类体外的函数定义不能指定关键字static；</strong></li>
+<li>静态成员之间可以相互访问，即静态成员函数（<strong>仅）可以访问静态成员变量、静态成员函数</strong>；</li>
+<li>静态成员函数不能访问非静态成员函数和非静态成员变量；</li>
+<li><strong>非静态成员函数可以任意地访问静态成员函数和静态数据成员</strong>；</li>
+<li><strong>由于没有this指针的额外开销，静态成员函数与类的全局函数相比速度上会稍快</strong>；</li>
+<li>调用静态成员函数，两种方式：</li>
+</ol>
+<ul>
+<li>通过成员访问操作符(.)和(-&gt;)，也即通过类对象或指向类对象的指针调用静态成员函数。</li>
+<li>直接通过类来调用静态成员函数。＜类名＞::＜静态成员函数名＞（＜参数表＞）。也即，静态成员不需要通过对象就能访问。</li>
+</ul>
+<p><strong>拷贝构造函数的问题</strong></p>
+<p>在使用包含静态成员的类时，有时候会调用拷贝构造函数生成临时的隐藏的类对象，而这个<strong>临时对象在消亡时会调用析构函数有可能会对静态变量做操作（例如total_num–）</strong>，可是这些对象在生成时却没有执行构造函数中的total_num++的操作。<strong>解决方案是为这个类写一个拷贝构造函数，在该拷贝构造函数中完成total_num++的操作。</strong></p>
+<h2 id="3-（面向过程的）静态全局变量"><a href="#3-（面向过程的）静态全局变量" class="headerlink" title="3.（面向过程的）静态全局变量"></a><strong>3.（面向过程的）静态全局变量</strong></h2><p>在全局变量前，加上关键字static，该变量就被定义成为一个静态全局变量。</p>
+<pre><code class="hljs C++"><span class="hljs-comment">//Example 1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt; </span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> n; <span class="hljs-comment">//定义静态全局变量 </span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	n=<span class="hljs-number">20</span>;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+	fn();
+&#125; 
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	n++;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+&#125;</code></pre>
+
+<p><strong>静态全局变量有以下特点：</strong></p>
+<ol>
+<li><p>该变量在全<strong>局数据区分配内存</strong>；</p>
+</li>
+<li><p>未经初始化的<strong>静态全局变量会被程序自动初始化为0</strong>（自动变量的自动初始化值是随机的）；</p>
+</li>
+<li><p>静态全局变量在<strong>声明它的整个文件都是可见的，而在文件之外是不可见的；</strong> 　</p>
+</li>
+<li><p>静态变量都在全局数据区分配内存，包括后面将要提到的静态局部变量。对于一个完整的程序，在内存中的分布情况如下：</p>
+<p>【代码区】【全局数据区】【堆区】【栈区】</p>
+<p>一般程序的由new产生的动态数据存放在堆区，函数内部的自动变量存放在栈区，<strong>静态数据（即使是函数内部的静态局部变量）存放在全局数据区</strong>。自动变量一般会随着函数的退出而释放空间，而全局数据区的数据并不会因为函数的退出而释放空间。</p>
+</li>
+</ol>
+<p>Example 1中的代码中将</p>
+<pre><code class="hljs text">static int n; &#x2F;&#x2F;定义静态全局变量</code></pre>
+
+<p>改为</p>
+<pre><code class="hljs text">int n; &#x2F;&#x2F;定义全局变量</code></pre>
+
+<p>程序照样正常运行。<br>定义全局变量就可以实现变量在文件中的共享，但定义静态全局变量还有以下好处：</p>
+<ol>
+<li><strong>静态全局变量不能被其它文件所用；</strong></li>
+<li><strong>其它文件中可以定义相同名字的变量，不会发生冲突；</strong></li>
+</ol>
+<p>将上述示例代码改为如下：</p>
+<pre><code class="hljs C++"><span class="hljs-comment">//Example 2</span>
+<span class="hljs-comment">//File1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt; </span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> n; <span class="hljs-comment">//定义静态全局变量 </span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	n=<span class="hljs-number">20</span>;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+	fn();
+&#125; 
+
+<span class="hljs-comment">//File2 </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt; </span></span>
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> n;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	n++;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+&#125;</code></pre>
+
+<p>编译并运行Example 2，会发现上述代码可以分别通过编译，但运行时出现错误。 这就是因<strong>为静态全局变量不能被其它文件所用，即使在其它文件中使用extern 进行声明也不行。</strong></p>
+<p>我们将</p>
+<pre><code class="hljs C++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> n; <span class="hljs-comment">//定义静态全局变量</span></code></pre>
+
+<p>改为</p>
+<pre><code class="hljs C++"><span class="hljs-keyword">int</span> n; <span class="hljs-comment">//定义全局变量</span></code></pre>
+
+<p>再次编译运行程序，程序可正常运行。</p>
+<p>因此，在一个文件中，静态全局变量和全局变量功能相同；而在两个文件中，要使用同一个变量，则只能使用全局变量而不能使用静态全局变量。</p>
+<h2 id="4-（面向过程的）静态局部变量"><a href="#4-（面向过程的）静态局部变量" class="headerlink" title="4.（面向过程的）静态局部变量"></a><strong>4.（面向过程的）静态局部变量</strong></h2><p>在局部变量前，加上关键字static，该变量就被定义成为一个静态局部变量。</p>
+<pre><code class="hljs C++"><span class="hljs-comment">//Example 3</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	fn(); <span class="hljs-comment">//10</span>
+	fn(); <span class="hljs-comment">//11</span>
+	fn(); <span class="hljs-comment">//12</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">static</span> n=<span class="hljs-number">10</span>;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+	n++;
+&#125;</code></pre>
+
+<p>通常，在函数体内定义了一个变量，每当程序运行到该语句时都会给该局部变量分配栈内存。但随着程序退出函数体，系统就会收回栈内存，局部变量也相应失效。</p>
+<p>但有时候我们需要在两次调用之间对变量的值进行保存。通常的想法是定义一个全局变量来实现。但这样一来，变量已经不再属于函数本身了，不再仅受函数的控制，这给程序的维护带来不便。</p>
+<p>静态局部变量正好可以解决这个问题。<strong>静态局部变量保存在全局数据区，而不是保存在栈中，每次的值保持到下一次调用，直到下次赋新值。</strong></p>
+<p><strong>静态局部变量有以下特点：</strong></p>
+<ol>
+<li>静态局部变量在<strong>全局数据区分配内存</strong>；</li>
+<li>静态局部变量在<strong>程序执行到该对象的声明处时被首次初始化，即以后的函数调用不再进行初始化；</strong></li>
+<li>静态局部变量<strong>一般在声明处初始化，如果没有显式初始化，会被程序自动初始化为0；</strong></li>
+<li>静态局部变量始终<strong>驻留在全局数据区，直到程序运行结束。但其作用域为局部作用域，当定义它的函数或语句块结束时，其作用域随之结束；</strong></li>
+</ol>
+<h2 id="5-（面向过程的）静态函数"><a href="#5-（面向过程的）静态函数" class="headerlink" title="5.（面向过程的）静态函数"></a><strong>5.（面向过程的）静态函数</strong></h2><p>在函数的返回类型前加上static关键字,函数即被定义为静态函数。静态函数与普通函数不同，它只能在声明它的文件当中可见，不能被其它文件使用。</p>
+<pre><code class="hljs C++"><span class="hljs-comment">//Example 4</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span></span>;<span class="hljs-comment">//声明静态函数</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	fn();
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fn</span><span class="hljs-params">()</span><span class="hljs-comment">//定义静态函数</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">int</span> n=<span class="hljs-number">10</span>;
+	<span class="hljs-built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="hljs-built_in">endl</span>;
+&#125;</code></pre>
+
+<p><strong>定义静态函数的好处：（类似于静态全局变量）</strong></p>
+<ol>
+<li>静态函数不能被其它文件所用；</li>
+<li>其它文件中可以定义相同名字的函数，不会发生冲突；</li>
+</ol>
+</div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/17/20200817/">
+                        <span class="hidden-mobile">C++空类与6个成员函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+  <p id="hitokoto">:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+  </script>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "C/C++中的static关键字&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
